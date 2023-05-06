@@ -1,0 +1,92 @@
+/*
+    This describes the basic flow of making a POST request to the backend.
+    
+    Reminder that this builds on top of the GET reqest flow. If you aren't familar with that, look at the notes from that first!
+    
+    This pattern is ESSENTIAL to full stack development. Follow this pattern EVERYTIME you are making a new post request!
+    
+    For the purposes of this exercise, let's say that someone is looking add things to a shopping cart.
+        - There are two inputs:
+            - A "Name" field
+            - A "Cost" field
+        - There is one submit button.
+*/
+
+// This should ALWAYS be step number one in a jquery project.
+// ⬇ We load the document and call the 'readyNow' function.
+$(document).ready(readyNow);
+
+function readyNow() {
+  // ⬇ jQuery and Javascript is loaded, it's now okay to manipulate the DOM
+  console.log("in readyNow function");
+  // ⬇ When the submit button is clicked, run this function
+  $("#submitBtn").on("click", getUserInputs);
+  // ⬇ When we load the page, we automatically want to go GET data from the backend, so we have the most up to date information
+  getHistory();
+}
+
+// ⬇ We will always start by first GETTING the user's input. This is a very basic function -> it's purpose is to get the data, then to direct you to more code.
+function getUserInputs() {
+  // ⬇ Checking to see if function is being called
+  console.log("in getUserInputs function");
+  // ⬇ Targeting user's inputs with the DOM and creating an object
+  let item = {
+    name: $("#nameInput").val(), // The name of the thing we want to buy
+    cost: Number($("#costInput").val()), // The cost of the the thing we want to buy, as a number
+  }; // end item object
+  // ⬇ Call the postNewItem function and pass it the item we just created above.
+  postNewItem(item);
+}
+
+function postNewItem(item){
+    // ⬇ Sending the input to the server
+    $.ajax({
+        method: 'POST',
+        url: '/grocery-list',
+        data: item
+    }).then( response => {
+        // ⬇ If we posted sucessfully, call the function to make a GET request to get the up-to-date list of things.
+        getHistory();
+        // ⬇ Call the function to clear the inputs
+        clearInputFields();
+    }).catch( err => {
+        alert(`There was a problem adding your item. Please try again later.`);
+    });
+}
+
+// ⬇ Clear the input fields
+function clearInputFields() {
+  $("#nameInput").val("");
+  $("#costInput").val("");
+}
+
+// Reminder -> The code below builds the pattern for a GET request and includes the: 1) Get history function and 2) The render function.
+
+function getHistory(){
+    // ⬇ checking to see that the function is being called
+    console.log('in getHistory function');
+    $.ajax({
+        method: 'GET',
+        url: '/history'
+    }).then((response) => {
+        // ⬇ Take the response from the database and pass it to the render function
+        // Important note -> We are going to assume that the response from the database is an array.
+        renderStuff(response);
+    }).catch((error) => {
+        alert('error in getHistory function');
+    });
+} // end getHistory function
+
+// ⬇ This will put things onto the DOM
+function renderStuff(arrayOfStuffToRender){
+    // ⬇ This will empty the list container on the DOM
+    $('#list').empty();
+    // ⬇ Loop through the array of stuff and append it to our list
+    for (let item of arrayOfStuffToRender){
+        $('#list').append(`
+          <li>
+            ${item.name} costs ${item.cost}
+          </li>
+        `);
+    }
+}
