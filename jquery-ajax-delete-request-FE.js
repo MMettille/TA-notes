@@ -110,6 +110,7 @@ function renderStuff(arrayOfStuffToRender){
           <li data-id=${item.id}>
             ${item.name} costs ${item.cost}
           </li>
+          <button id="deleteBtn">Delete</button>
         `);
     }
 }
