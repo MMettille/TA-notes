@@ -6,10 +6,12 @@
     For this exersise, let's imagine that the response we are getting back from the database looks like:
     [ 
        {
+          id: 1
           name: "Oranges",
           cost: "0.99",
        },
        {
+          id: 2
           name: "Apples",
           cost: "1.99",
        }
