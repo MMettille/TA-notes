@@ -2,6 +2,8 @@
     This describes the basic flow of making a GET request to the backend, then rendering what is returned.
     
     This pattern is ESSENTIAL to full stack development. Follow this pattern EVERYTIME you are making a new getRequest!
+    
+    NOTE - this is one way to do this. Your code may be different!
 
     For this exersise, let's imagine that the response we are getting back from the database looks like:
     [ 
