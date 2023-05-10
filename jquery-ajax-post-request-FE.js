@@ -23,7 +23,7 @@ function readyNow() {
   // ⬇ When the submit button is clicked, run this function
   $("#submitBtn").on("click", getUserInputs);
   // ⬇ When we load the page, we automatically want to go GET data from the backend, so we have the most up to date information
-  getHistory();
+  getAllEmployees();
 }
 
 // ⬇ We will always start by first GETTING the user's input. This is a very basic function -> it's purpose is to get the data, then to direct you to more code.
