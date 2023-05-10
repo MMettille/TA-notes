@@ -50,7 +50,10 @@ function getAllEmployees(){
         // Important note -> We are going to assume that the response from the database is an array. You can see that array at the top of this file.
         renderStuff(response);
     }).catch((error) => {
-        alert('error in getAllEmployees function', error);
+        // ⬇ Tell the user there was an issue
+        alert('There was a problem. Please try again pater");
+        // ⬇ Log the issue
+        console.log('error in getAllEmployees function', error);
     });
 } // end getAllEmployees function
 
