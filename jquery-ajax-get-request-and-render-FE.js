@@ -36,12 +36,12 @@ function readyNow() {
   // Any click listeners can go here.
   
   // ⬇ When we load the page, we automatically want to go GET data from the backend, so we have the most up to date information
-  getHistory();
+  getAllEmployees();
 }
 
-function getHistory(){
+function getAllEmployees(){
     // ⬇ checking to see that the function is being called
-    console.log('in getHistory function');
+    console.log('in getAllEmployees function');
     $.ajax({
         method: 'GET',
         url: '/employees'
@@ -50,15 +50,15 @@ function getHistory(){
         // Important note -> We are going to assume that the response from the database is an array. You can see that array at the top of this file.
         renderStuff(response);
     }).catch((error) => {
-        alert('error in getHistory function');
+        alert('error in getAllEmployees function', error);
     });
-} // end getHistory function
+} // end getAllEmployees function
 
 // ⬇ This will put things onto the DOM
 function renderStuff(arrayOfEmployeesToRender){
     // ⬇ This will empty the list container on the DOM
     $('#list').empty();
-    // ⬇ Loop through the array of stuff and append it to our list
+    // ⬇ Loop through the array of employees and append it to our list
     for (let employee of arrayOfEmployeesToRender){
         $('#list').append(`
           <li>
