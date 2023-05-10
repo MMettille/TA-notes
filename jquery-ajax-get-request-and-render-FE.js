@@ -7,15 +7,23 @@
     [ 
        {
           id: 1
-          name: "Oranges",
-          cost: "0.99",
+          name: "Mary",
+          job_title: "Software Engineer II",
+          salary: 110_000
        },
        {
           id: 2
-          name: "Apples",
-          cost: "1.99",
-       }
-    ]
+          name: "Jenna",
+          job_title: "Designer",
+          salary: 98_000
+       },
+       {
+          id: 3
+          name: "Marcus",
+          job_title: "Product Manager",
+          salary: 70_000
+       },
+    ]; 
 */
 
 // This should ALWAYS be step number one in a jquery project.
@@ -36,10 +44,10 @@ function getHistory(){
     console.log('in getHistory function');
     $.ajax({
         method: 'GET',
-        url: '/history'
+        url: '/employees'
     }).then((response) => {
         // ⬇ Take the response from the database and pass it to the render function
-        // Important note -> We are going to assume that the response from the database is an array.
+        // Important note -> We are going to assume that the response from the database is an array. You can see that array at the top of this file.
         renderStuff(response);
     }).catch((error) => {
         alert('error in getHistory function');
@@ -47,14 +55,14 @@ function getHistory(){
 } // end getHistory function
 
 // ⬇ This will put things onto the DOM
-function renderStuff(arrayOfStuffToRender){
+function renderStuff(arrayOfEmployeesToRender){
     // ⬇ This will empty the list container on the DOM
     $('#list').empty();
     // ⬇ Loop through the array of stuff and append it to our list
-    for (let item of arrayOfStuffToRender){
+    for (let employee of arrayOfEmployeesToRender){
         $('#list').append(`
           <li>
-            ${item.name} costs ${item.cost}
+            ${employee.name} is a ${employee.job_title} and makes ${employee.salary} a year.
           </li>
         `);
     }
