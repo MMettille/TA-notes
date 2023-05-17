@@ -90,7 +90,7 @@ app.listen(PORT, () => {
   - Are you using bootstrap?
     - Source in `bootstrap.css`
     - Source in `boostrap.bundle.js`
- - Add a test `<p>boop!</p>` in the `<body>`
+  - Add a test `<p>boop!</p>` in the `<body>`
 
 - Time to start up your app! 
   - Run `npm start` in your terminal
