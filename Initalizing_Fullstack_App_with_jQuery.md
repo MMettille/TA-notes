@@ -1,21 +1,22 @@
 # Initalizing A Fullstack App with jQuery
 
 - Create files:  
-    - A **Folder** named `server`  
-      - A **Folder** named `modules`
+    - A **Folder** named `server`. Inside that goes:  
+      - A **Folder** named `modules`. Inside that goes:  
         -  `pool.js`
-      - A **Folder** named `public`
-        -   A **Folder** named `scripts`
+      - A **Folder** named `public`. Inside that goes:  
+        -   A **Folder** named `scripts`. Inside that goes:  
             -   `client.js`
-        -   A **Folder** named `styles`
+        -   A **Folder** named `styles`. Inside that goes:  
             -   `stylesheet.css`
-        -   A **Folder** named `vendors`
+        -   A **Folder** named `vendors`. Inside that goes:  
             -   Copy over your `jquery.js`!
             -   Are you using boostrap? If yes:
                 -   Copy over your `bootstrap.css`
                 -   Copy over your `boostrap.bundle.js`
         -   `index.html`
-      - A **Folder** named `routes`
+      - A **Folder** named `routes`. Inside that goes:  
+        - Files for each route go here in the structure of `name.router.js` (i.e. `book.router.js` or `author.router.js`)
       - `server.js`
     - `.gitignore`  
     - `README.md`
